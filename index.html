@@ -87,6 +87,15 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "d7a1fa6c41c0417381af89db7dd47e92"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+             
+
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -101,6 +110,95 @@
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
     // Start your code here
+    errorBtns[0].addEventListener("click", function(){
+      console.log("Console Log");
+    });
+
+    errorBtns[1].addEventListener("click", function(){
+      console.error("Console Error");
+    });
+
+    errorBtns[2].addEventListener("click", function(){
+      console.count("Console Count");
+    });
+
+    errorBtns[3].addEventListener("click", function(){
+      console.warn("Console Warn");
+    });
+
+    errorBtns[4].addEventListener("click", function(){
+      console.assert(8 === 0, "Console Assert: 8 != 0");
+    });
+
+    errorBtns[5].addEventListener("click", function(){
+      console.clear();
+    });
+
+    errorBtns[6].addEventListener("click", function(){
+      console.dir(errorBtns[6]);
+    });
+
+    errorBtns[7].addEventListener("click", function(){
+      console.dir(errorBtns);
+    });
+
+    errorBtns[8].addEventListener("click", function(){
+      console.group();
+    });
+
+    errorBtns[9].addEventListener("click", function(){
+      console.groupEnd();
+    });
+
+    errorBtns[10].addEventListener("click", function(){
+      console.table(["a", "b"]);
+    });
+
+    errorBtns[11].addEventListener("click", function(){
+      console.time("Timer");
+    });
+
+    errorBtns[12].addEventListener("click", function(){
+      console.timeEnd("Timer");
+    });
+
+    errorBtns[13].addEventListener("click", function(){
+      console.trace(errorBtns[13]);
+    });
+
+    errorBtns[14].addEventListener("click", function(){
+      console.table(example);
+    });
+
+    class bigError extends Error {
+      constructor(message){
+        super(message);
+        this.name = "Big Error";
+      }
+    }
+
+    function Equal(num1, num2){
+      if (num1 == num2) {
+        return true;
+      }
+      throw new bigError("You've got an error UWU");
+    }
+
+    try {
+      numOne = Math.floor(Math.random() * 5);
+      numTwo = Math.floor(Math.random() * 5);
+      Equal(numOne, numTwo);
+    } catch (err) {
+      if (err == bigError) {
+        console.log("They are not the same");
+      }
+      else throw err;
+    } finally {
+      console.log("ERROR L");
+    }
+
+
+
     // You may move this JS to another file if you wish
   </script>
 </body>
